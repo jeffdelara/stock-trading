@@ -1,2 +1,20 @@
 <h1 class="text-5xl">StaticPages#home</h1>
 <p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% if current_user %>
+  <p> Hello <%= current_user.email %>!</p>
+  <p> You have successfully authenticated with your Devise account </p>
+  <p> You are a [<%= current_user.role %>]</p><br/>
+
+  <% if current_user.admin? %>
+    There are <%= User.count %> traders in the system.
+  <% end %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+
+<% else %>
+
+  <p> You are not signed in </p>
+  <%= link_to "Sign Up!", new_user_registration_path %>
+  <%= link_to "Login", new_user_session_path %>
+
+<% end %>
