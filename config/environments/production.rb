@@ -132,8 +132,8 @@ Rails.application.configure do
     domain: "mail.google.com", ####important
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: Rails.application.credentials.mailer_email,
-    password: Rails.application.credentials.mailer_password
+    user_name: Rails.application.credentials.prod_mailer_email,
+    password: Rails.application.credentials.prod_mailer_password
   }
   
 end
