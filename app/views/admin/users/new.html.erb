@@ -1,0 +1,18 @@
+<div>
+  <h1>New Trader</h1>
+
+  <p>Create a new trader account.</p>
+
+  <%= form_with model: [:admin, @user] do |f| %>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %><br>
+
+    <%= f.label :password %><br>
+    <%= f.password_field :password %><br>
+
+    <%= f.label :password_confirmation %><br>  
+    <%= f.password_field :password_confirmation %><br>
+
+    <%= f.submit 'Create Trader Account' %>
+  <% end %>
+</div>
