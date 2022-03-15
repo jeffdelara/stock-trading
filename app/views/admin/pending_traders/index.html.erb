@@ -1,0 +1,26 @@
+<div>
+  <%= link_to 'Home', admin_users_path %>
+  <h1>Pending Traders</h1>
+
+  <p>All pending traders.</p>
+
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Approved</th>
+      <th>Action</th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.email, admin_user_path(user) %></td>
+      <td><%= user.approved? ? 'Approved' : 'Pending' %></td>
+      <td>
+        <%= form_with :model => [:admin, user], :method => :patch do |f| %>
+          <%= f.hidden_field :approved, :value => true %>
+          <%= f.submit 'Approve Trader' %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
