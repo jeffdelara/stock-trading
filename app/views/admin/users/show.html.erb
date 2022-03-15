@@ -1,0 +1,29 @@
+<div>
+  <h1>User</h1>
+  <%= link_to 'Home', admin_users_path %>
+  <table>
+    <tr>
+      <td>Email</td>
+      <td><%= @user.email %></td>
+    </tr>
+
+    <tr>
+      <td>Role</td>
+      <td><%= @user.role %></td>
+    </tr>
+
+    <tr>
+      <td>Email confirmed</td>
+      <td><%= @user.confirmed_at || 'unconfirmed' %></td>
+    </tr>
+
+    <tr>
+      <td>Approve account</td>
+      <td>TODO</td>
+    </tr>
+  </table>
+
+  <%= link_to 'Edit', edit_admin_user_path(@user) %> | 
+  <%= link_to 'Delete', admin_user_path(@user), 
+        :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+</div>
