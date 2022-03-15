@@ -3,8 +3,25 @@
 
   <p>Welcome <%= current_user.email %></p>
 
+  <table>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_user_path(user) %> | 
+          <%= link_to 'Show', admin_user_path(user) %> | 
+          <%= link_to 'Delete', admin_user_path(user), :method => :delete, :data => {:confirm => 'Are you sure?'} %> 
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
   <ul>
     <li><%= link_to 'Create trader', new_admin_user_path %></li>
+    <li><%= link_to 'View all traders', admin_users_path %></li>
     <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
   </ul>
+
+  
 </div>
