@@ -1,0 +1,31 @@
+<div>
+  <h1>User</h1>
+  <%= link_to 'Home', admin_users_path %>
+
+  <%= form_with model: [:admin, @user] do |f| %>
+    <table>
+      <tr>
+        <td>Email</td>
+        <td><%= f.text_field :email %></td>
+      </tr>
+
+      <tr>
+        <td>Email confirmed</td>
+        <td><%= @user.confirmed_at || 'unconfirmed' %></td>
+      </tr>
+
+      <tr>
+        <td>Approved</td>
+        <td><%= f.check_box :approved %> Mark as approved?</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td><%= f.submit %></td>
+      </tr>
+    </table>
+  <% end %>
+
+  <%= link_to 'Delete', admin_user_path(@user), 
+        :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+</div>

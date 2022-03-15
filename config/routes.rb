@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do 
     get '/', to: 'users#index'
     resources :users 
+    resources :pending_traders
   end
 
 end

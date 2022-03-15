@@ -4,11 +4,10 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, :only => [:show, :edit, :update, :destroy]
 
   def index 
-    @users = User.all
+    @users = User.where(:role => :trader)
   end
 
   def show 
-    
   end
 
   def new 
@@ -27,12 +26,27 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update 
+    if @user.update(allowed_params)
+      redirect_to admin_user_path(@user), :notice => 'User successfully updated.'
+    else 
+      render :edit
+    end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path, :alert => 'User deleted.' 
+  end
+
 
 
   private
 
   def allowed_params 
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :approved)
   end
 
   def require_admin 
