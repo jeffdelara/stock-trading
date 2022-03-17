@@ -1,0 +1,2 @@
+class UserStockPortfoliosController < ApplicationController
+end

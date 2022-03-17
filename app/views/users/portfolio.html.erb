@@ -1,0 +1,17 @@
+<h1>Users#portfolio</h1>
+<p>Find me in app/views/users/portfolio.html.erb</p>
+
+<%= form_tag search_stock_path, method: :get do %>
+  <%# "Autofocus: true" means that as soon as the page is loaded,
+  the cursor moves to the part where the autofocus attribute is described and the input state is entered. %>
+  <%= text_field_tag :stock, params[:stock], placeholder: 'Stock Symbol', autofocus: true %>
+  <%= button_tag type: :submit do %>
+    <%= 'Search' %>
+  <% end %>
+<% end %>
+
+<%= render 'users/result' %>
+
+<% if !@my_stocks.empty? %>
+  <%= render 'stocks/stocklist' %>
+<% end %>

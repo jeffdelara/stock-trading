@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+  # Associations
+  has_many :user_stock_portfolios
+  has_many :stocks, through: :user_stock_portfolios
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
