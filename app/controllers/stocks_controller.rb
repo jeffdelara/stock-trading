@@ -2,7 +2,7 @@ class StocksController < ApplicationController
   def search
     if params[:stock].present? 
       @stock = Stock.new_lookup(params[:stock])
-      # render json: @stock
+      @my_stocks = current_user.stocks
 
       if @stock # if @stock is not nil, i-execute ito
         render 'users/portfolio'

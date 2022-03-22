@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :user_stock_portfolios
+  resources :user_stock_portfolios, only: [:create]
   
   # get 'users/portfolio'
   root 'static_pages#home'

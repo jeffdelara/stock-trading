@@ -1,0 +1,37 @@
+<% if @stock %>
+  <strong>Symbol: </strong> <%= @stock.symbol %>
+  <strong>Company Name: </strong> <%= @stock.company_name %>
+  <strong>Cost Price: </strong> <%= @stock.cost_price %>
+  
+    <%= link_to "Buy Stock", user_stock_portfolios_path(user: current_user, symbol: @stock.symbol), method: :post %>
+  
+<% end %>
+
+<% if !@my_stocks.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th> Symbol</th>
+        <th> Company Name </th>
+        <th> Cost Price </th>
+        <th> Total Shares </th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @my_stocks.each do |stock| %>
+      <%# specific user, specific stocks %>
+        <%# <% if stock.user == current_user %>
+        <tr>
+          <td> <%= stock.symbol %> </td>
+          <td> <%= stock.company_name %> </td>
+          <td> <%= stock.cost_price %> </td>
+          <td> <%= 'sample # of shares' %> </td>
+          
+        </tr>
+        <%# <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
