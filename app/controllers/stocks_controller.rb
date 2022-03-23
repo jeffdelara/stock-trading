@@ -3,7 +3,7 @@ class StocksController < ApplicationController
 
   # GET /stocks
   def index
-    @stocks = Stock.all
+    @stocks = current_user.stocks
   end
 
   # GET /stocks/1
@@ -21,10 +21,10 @@ class StocksController < ApplicationController
 
   # POST /stocks
   def create
-    @stock = Stock.new(stock_params)
+    @stock = current_user.stocks.build stock_params
 
     if @stock.save
-      redirect_to @stock, notice: 'Stock was successfully created.'
+      redirect_to stocks_path, notice: 'Stock was successfully created.'
     else
       render :new
     end

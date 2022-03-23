@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :pending_traders
   end
   
+  resources :quotes
   resources :stocks
 end
