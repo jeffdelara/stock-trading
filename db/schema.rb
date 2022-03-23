@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_15_120005) do
+ActiveRecord::Schema.define(version: 2022_03_23_090533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "company_name"
+    t.float "shares"
+    t.float "cost_price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +39,10 @@ ActiveRecord::Schema.define(version: 2022_03_15_120005) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean "approved", default: false
+    t.float "cash", default: 100000.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "stocks", "users"
 end
