@@ -22,12 +22,16 @@ class StocksController < ApplicationController
   # POST /stocks
   def create
     @stock = current_user.stocks.build stock_params
+    stock_portfolio = current_user.stocks.find_by_symbol @stock.symbol 
 
-    if @stock.save
-      redirect_to stocks_path, notice: 'Stock was successfully created.'
-    else
-      render :new
+    if stock_portfolio 
+      stock_portfolio.update(
+        :shares => stock_portfolio.shares + @stock.shares
+      )
+    else 
+      @stock.save
     end
+    redirect_to stocks_path, notice: 'Buy successful.'
   end
 
   # PATCH/PUT /stocks/1

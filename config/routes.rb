@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :pending_traders
   end
   
-  resources :quotes
+  resources :quotes, :except => [:show]
+  get 'quotes/:symbol', to: 'quotes#show'
+  get 'portfolio', to: 'stocks#index'
   resources :stocks
 end

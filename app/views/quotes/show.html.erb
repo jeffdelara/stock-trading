@@ -22,7 +22,7 @@
     <%= f.hidden_field :symbol, :value => @quote.symbol %>
     <%= f.hidden_field :company_name, :value => @quote.company_name %>
     <%= f.hidden_field :cost_price, :value => @quote.cost_price %>
-    <%= f.label :shares %>
+    <%= f.label :shares %><br>
     <%= f.number_field :shares, :placeholder => 'Number of shares...' %>
     <%= f.submit "Buy #{@quote.company_name}" %>
   <% end %>
