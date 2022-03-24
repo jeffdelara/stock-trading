@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_090533) do
+ActiveRecord::Schema.define(version: 2022_03_24_122546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 2022_03_23_090533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
+
+  create_table "transaction_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "symbol"
+    t.string "company_name"
+    t.float "shares"
+    t.float "price"
+    t.float "value"
+    t.integer "transaction_type_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +64,5 @@ ActiveRecord::Schema.define(version: 2022_03_23_090533) do
   end
 
   add_foreign_key "stocks", "users"
+  add_foreign_key "transactions", "users"
 end
