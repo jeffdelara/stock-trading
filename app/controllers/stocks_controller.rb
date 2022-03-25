@@ -25,12 +25,15 @@ class StocksController < ApplicationController
     stock_portfolio = current_user.stocks.find_by_symbol @stock.symbol 
 
     if stock_portfolio 
-      stock_portfolio.update(
+      @stock = stock_portfolio
+      @stock.update(
         :shares => stock_portfolio.shares + @stock.shares
       )
     else 
       @stock.save
     end
+
+    Transaction.record @stock, 'buy'
     redirect_to stocks_path, notice: 'Buy successful.'
   end
 
