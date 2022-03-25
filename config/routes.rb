@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/', to: 'users#index'
     resources :users 
     resources :pending_traders
+    resources :transactions 
   end
   
   resources :quotes, :except => [:show]

@@ -4,7 +4,6 @@ class StocksController < ApplicationController
   # GET /stocks
   def index
     @stocks = current_user.stocks.where.not(shares: 0)
-    # @stocks.map{|stock| stock.shares == 0 && stock.destroy}
   end
 
   # GET /stocks/1
@@ -58,6 +57,7 @@ class StocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stock_params
-      params.require(:stock).permit(:symbol, :company_name, :shares, :cost_price, :user_id)
+      params.require(:stock).permit :symbol, :company_name, 
+        :shares, :cost_price, :user_id
     end
 end

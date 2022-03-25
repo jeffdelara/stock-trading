@@ -1,0 +1,24 @@
+<h1>Transactions</h1>
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Company</th>
+    <th>Shares</th>
+    <th>Price</th>
+    <th>Value</th>
+    <th>Type</th>
+    <th>User</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+  <tr>
+    <td><%= transaction.symbol %></td>
+    <td><%= transaction.company_name %></td>
+    <td><%= transaction.shares %></td>
+    <td><%= transaction.price %></td>
+    <td><%= transaction.value %></td>
+    <td><%= transaction.transaction_type.name %></td>
+    <td><%= transaction.user.email %></td>
+  </tr>
+  <% end %>
+</table>

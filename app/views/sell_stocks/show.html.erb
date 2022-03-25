@@ -18,6 +18,7 @@
     
   </table>
 
+  <h5>You currently own <b><%= @stock.shares %></b> shares of <%= @stock.company_name %></h5>
   <%= form_with :url => sell_stock_path, model: Stock.new, method: :post do |f| %>
     <%= f.hidden_field :symbol, :value => @quote.symbol %>
     <%= f.hidden_field :company_name, :value => @quote.company_name %>
