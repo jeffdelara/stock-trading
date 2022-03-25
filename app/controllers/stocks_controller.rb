@@ -3,7 +3,8 @@ class StocksController < ApplicationController
 
   # GET /stocks
   def index
-    @stocks = current_user.stocks
+    @stocks = current_user.stocks.where.not(shares: 0)
+    # @stocks.map{|stock| stock.shares == 0 && stock.destroy}
   end
 
   # GET /stocks/1
