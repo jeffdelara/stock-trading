@@ -20,7 +20,7 @@
         <td><%= stock.shares %></td>
         <td><%= stock.cost_price %></td>
         <td><%= (stock.cost_price * stock.shares).round(2) %></td>
-        <td><%= link_to 'Sell', '#' %></td>
+        <td><%= link_to 'Sell', get_sellstock_path(stock.symbol) %></td>
         <td><%= link_to 'Buy', quote_path(stock.symbol) %></td>
       </tr>
     <% end %>
