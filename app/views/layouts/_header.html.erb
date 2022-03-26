@@ -9,8 +9,11 @@
       <%= link_to 'Transactions', admin_transactions_path %>
     <% end %>
 
-    <%= link_to 'Portfolio', portfolio_path %>
-    <%= link_to 'Transactions', '#' %>
+    <% if current_user.trader? %>
+      <%= link_to 'Portfolio', portfolio_path %>
+      <%= link_to 'Transactions', '#' %>
+    <% end %>
+    
     <%= link_to current_user.email, edit_user_registration_path %>
     <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
   

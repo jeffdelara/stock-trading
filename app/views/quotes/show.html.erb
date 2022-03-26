@@ -21,6 +21,10 @@
   </table>
 
   <div class='shares'>
+  <% if @stock&.shares.present? && @stock.shares > 0 %>
+  <h5>You currently own <b><%= @stock.shares %></b> 
+    shares of <%= @quote.company_name %></h5>
+  <% end %>
   <%= form_with :url => stocks_path, model: Stock.new, method: :post do |f| %>
     <%= f.hidden_field :symbol, :value => @quote.symbol %>
     <%= f.hidden_field :company_name, :value => @quote.company_name %>

@@ -9,7 +9,9 @@ class QuotesController < ApplicationController
   end
 
   def show 
-    @quote = Stock.new_lookup(params[:symbol].upcase)
+    symbol = params[:symbol].upcase
+    @quote = Stock.new_lookup symbol
+    @stock = Stock.find_by_symbol symbol
     
     unless @quote
       flash[:alert] = 'Stock not found.'

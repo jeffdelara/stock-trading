@@ -25,10 +25,10 @@ class StocksController < ApplicationController
     stock_portfolio = current_user.stocks.find_by_symbol @stock.symbol 
 
     if stock_portfolio 
-      @stock = stock_portfolio
-      @stock.update(
+      stock_portfolio.update(
         :shares => stock_portfolio.shares + @stock.shares
       )
+      @stock = stock_portfolio
     else 
       @stock.save
     end

@@ -1,6 +1,5 @@
-<div>
+<div class='container login'>
   <h1>User</h1>
-  <%= link_to 'Home', admin_users_path %>
 
   <%= form_with model: [:admin, @user] do |f| %>
     <table>
@@ -20,12 +19,15 @@
       </tr>
 
       <tr>
-        <td></td>
+        <td>
+          <%= link_to 'Delete', admin_user_path(@user), 
+            :class => 'btn btn-sell', 
+            :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+        </td>
         <td><%= f.submit %></td>
       </tr>
     </table>
   <% end %>
 
-  <%= link_to 'Delete', admin_user_path(@user), 
-        :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+  
 </div>

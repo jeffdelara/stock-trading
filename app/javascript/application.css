@@ -34,18 +34,20 @@ small {
   @apply text-gray-500;
 }
 
-small.buy {
+small.buy,
+.buy {
   @apply text-green-500;
 }
 
-small.sell {
+small.sell,
+.sell {
   @apply text-red-500;
 }
 
 .container {
   width: 1000px;
   margin: 0 auto;
-  @apply bg-white rounded shadow p-3;
+  @apply bg-white rounded shadow p-5;
 }
 
 .login {
@@ -103,7 +105,7 @@ p.alert {
 }
 
 nav {
-  @apply bg-blue-500 p-3 flex justify-between;
+  @apply bg-blue-500 md:flex p-3 justify-between;
 }
 
 nav a {
@@ -116,6 +118,14 @@ nav h1 {
 
 .menu {
   @apply flex gap-4;
+}
+
+.submenu {
+  @apply flex gap-3 my-2;
+}
+
+ul.submenu li {
+  @apply bg-blue-50 px-2 py-1 hover:bg-blue-100;
 }
 
 table {
