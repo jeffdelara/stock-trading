@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post 'sell_stocks/:symbol', to: 'sell_stocks#create', as: 'sell_stock'
   get 'portfolio', to: 'stocks#index'
   resources :stocks
+
+  resources :transactions, :only => [:index]
 end
