@@ -11,7 +11,7 @@ class QuotesController < ApplicationController
   def show 
     symbol = params[:symbol].upcase
     @quote = Stock.new_lookup symbol
-    @stock = Stock.find_by_symbol symbol
+    @stock = current_user.stocks.find_by_symbol symbol
     
     unless @quote
       flash[:alert] = 'Stock not found.'
