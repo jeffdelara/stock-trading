@@ -9,6 +9,8 @@
         <th>Transaction Type</th>
         <th>Company name</th>
         <th>Shares</th>
+        <th>Price</th>
+        <th>Amount</th>
         <th>Type</th>
       </tr>
     </thead>
@@ -19,6 +21,8 @@
           <td><%= 'Transaction Type' %></td>
           <td><%= transaction.company_name %></td>
           <td><%= transaction.shares %></td>
+          <td><%= format_number transaction.price %></td>
+          <td><%= format_number transaction.value %></td>
           <td><%= transaction.transaction_type.name %></td>
         </tr>
       <% end %>
