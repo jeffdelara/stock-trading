@@ -1,12 +1,13 @@
-<h1>Stocks</h1>
+<h1>My Portfolio <%= link_to '+ Buy Stock', new_quote_path, class: 'btn float-right' %></h1>
 
+<div class='portfolio clear-both'>
 <table>
   <thead>
     <tr>
       <th>Symbol</th>
       <th>Company name</th>
       <th>Shares</th>
-      <th>Cost price</th>
+      <th>Cost price ($)</th>
       <th>Total</th>
       <th colspan="3"></th>
     </tr>
@@ -15,18 +16,22 @@
   <tbody>
     <% @stocks.each do |stock| %>
       <tr>
-        <td><%= stock.symbol %></td>
-        <td><%= stock.company_name %></td>
+        <td class='font-semibold'><%= stock.symbol %></td>
+        <td class='text-gray-500 text-left'><%= stock.company_name %></td>
         <td><%= stock.shares %></td>
-        <td><%= stock.cost_price %></td>
-        <td><%= (stock.cost_price * stock.shares).round(2) %></td>
-        <td><%= link_to 'Sell', get_sellstock_path(stock.symbol) %></td>
-        <td><%= link_to 'Buy', quote_path(stock.symbol) %></td>
+        <td><%= format_number stock.cost_price %></td>
+        <td><%= format_number(stock.cost_price * stock.shares) %></td>
+        <td><%= link_to 'Sell', get_sellstock_path(stock.symbol), class: 'btn-sell' %></td>
+        <td><%= link_to 'Buy', quote_path(stock.symbol), class: 'btn-buy' %></td>
       </tr>
     <% end %>
+
+    <tr>
+      <td class='font-bold'>TOTAL</td>
+      <td colspan=3></td>
+      <td class='font-bold'><%= format_number(compute_total @stocks) %></td>
+      <td colspan=2></td>
+    </tr>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Buy Stock', new_quote_path %>
+</div>

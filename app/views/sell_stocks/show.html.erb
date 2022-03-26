@@ -1,5 +1,6 @@
-<div>
-  <h1>Quote</h1>
+<div class="container login">
+  <small class='sell'>SELLING</small>
+  <h1><%= "#{@quote.company_name} (#{@quote.symbol})" %></h1>
   <table>
     <tr>
       <td>Symbol</td>
@@ -18,16 +19,19 @@
     
   </table>
 
+  <div class='shares'>
   <h5>You currently own <b><%= @stock.shares %></b> shares of <%= @stock.company_name %></h5>
   <%= form_with :url => sell_stock_path, model: Stock.new, method: :post do |f| %>
     <%= f.hidden_field :symbol, :value => @quote.symbol %>
     <%= f.hidden_field :company_name, :value => @quote.company_name %>
     <%= f.hidden_field :cost_price, :value => @quote.cost_price %>
-    <%= f.label :shares %><br>
-    <%= f.number_field :shares, :placeholder => 'Number of shares...' %>
-    <%= f.submit "Sell #{@quote.company_name}" %>
+    <%= f.number_field :shares, :placeholder => 'Number of shares to sell...' %>
+    <%= f.submit "Sell #{@quote.company_name}", class: 'w-full btn-sell' %>
   <% end %>
+  </div>
 
-  <%= link_to 'Back to stocks', stocks_path %> | 
+  <hr>
+
+  <%= link_to 'Back to stocks', stocks_path %> <br>
   <%= link_to 'Look for new stock', new_quote_path %>
 </div>

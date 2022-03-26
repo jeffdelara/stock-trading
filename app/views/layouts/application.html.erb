@@ -6,34 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> %>
     <%= stylesheet_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
   </head>
 
   <body>
-    <% if notice %><p><%= notice %></p><% end %>
-    <% if alert %><p><%= alert %></p><% end %>
-    <nav>
-      <%= link_to 'Home', root_path %>
-      <%= link_to 'Portfolio', portfolio_path %>
-
-      <% if user_signed_in? %>
-        
-        <% if current_user.admin? %>
-          <%= link_to 'Traders', admin_users_path %>
-          <%= link_to 'Pending', admin_pending_traders_path %>
-          <%= link_to 'Transactions', admin_transactions_path %>
-        <% end %>
-
-        <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to 'Login', new_user_session_path %>
-      <% end %>
-
-    </nav>
+    <% if notice %><p class='notice'><%= notice %></p><% end %>
+    <% if alert %><p class='alert'><%= alert %></p><% end %>
     
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

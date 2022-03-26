@@ -15,6 +15,7 @@ class SellStocksController < ApplicationController
       redirect_to get_sellstock_path(params[:symbol])
     else
       @stock.update :shares => @stock.shares - stock_params[:shares].to_f
+      
       Transaction.record @stock, 'sell'
       redirect_to portfolio_path, notice: "Successfully sold #{stock_params[:shares]} shares of #{@stock.company_name}!"
     end

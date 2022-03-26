@@ -1,4 +1,4 @@
 <%= form_with url: quotes_path, method: :get do |f| %>
-  <%= f.text_field :symbol %>
-  <%= f.submit 'Get quote' %>
+  <%= f.text_field :symbol, placeholder: 'ex. AMZN, GOOGL, AAPL' %>
+  <%= f.submit 'Get quote', class: 'w-full' %>
 <% end %>

@@ -1,0 +1,22 @@
+<nav>
+  <h1>StockTrading</h1>
+  
+  <div class='menu flex-col mt-2 md:flex-row md:mt-0'>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <%= link_to 'Traders', admin_users_path %>
+      <%= link_to 'Pending', admin_pending_traders_path %>
+      <%= link_to 'Transactions', admin_transactions_path %>
+    <% end %>
+
+    <%= link_to 'Portfolio', portfolio_path %>
+    <%= link_to 'Transactions', '#' %>
+    <%= link_to current_user.email, edit_user_registration_path %>
+    <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+  
+  <% else %>
+    <%= link_to 'Sign up', new_user_registration_path %>
+    <%= link_to 'Login', new_user_session_path %>
+  <% end %>
+  </div>
+</nav>

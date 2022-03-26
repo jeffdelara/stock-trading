@@ -1,20 +1,13 @@
-<h1 class="text-5xl">StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
-
-<% if current_user %>
-  <p> Hello <%= current_user.email %>!</p>
-  <p> You have successfully authenticated with your Devise account </p>
-  <p> You are a [<%= current_user.role %>]</p><br/>
-
-  <% if current_user.admin? %>
-    There are <%= User.count %> traders in the system.
-  <% end %>
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-
-<% else %>
-
-  <p> You are not signed in </p>
-  <%= link_to "Sign Up!", new_user_registration_path %>
-  <%= link_to "Login", new_user_session_path %>
-
-<% end %>
+<div class='container two-col'>
+  <div class='flex flex-col justify-center text-center p-6'>
+    <h1 class='text-7xl font-bold'>Trading Markets</h1>
+    <p class='text-2xl mt-4 text-gray-600'>Buy and sell your favorite stocks and practice your investment strategy.</p>
+    <div class='mt-2'>
+      <%= link_to "Register", new_user_registration_path, class: 'btn text-2xl' %>
+      <%= link_to "Login", new_user_session_path, class: 'btn text-2xl' %>
+    </div>
+  </div>
+  <div class='w-full flex justify-center items-center'>
+    <%= image_tag 'investing.svg', class: 'w-4/5' %>
+  </div>
+</div>

@@ -1,3 +1,172 @@
 @import "tailwindcss/base";
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
+
+body {
+  @apply bg-blue-50 text-gray-800;
+}
+
+main {
+  @apply p-3;
+}
+
+main h1 {
+  @apply text-3xl;
+}
+
+main h2 {
+  @apply text-2xl;
+}
+
+main a {
+  @apply text-blue-500;
+}
+
+main div {
+  @apply rounded;
+}
+
+hr {
+  @apply my-3;
+}
+
+small {
+  @apply text-gray-500;
+}
+
+small.buy {
+  @apply text-green-500;
+}
+
+small.sell {
+  @apply text-red-500;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  @apply bg-white rounded shadow p-3;
+}
+
+.login {
+  max-width: 500px;
+  width: 100%;
+  @apply p-4;
+}
+
+.login input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  width: 100%;
+}
+
+.two-col {
+  @apply flex;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  @apply border rounded px-3 py-2 font-light my-1;
+}
+
+label {
+  @apply mt-2 text-sm font-light;
+}
+
+input[type="number"] {
+  text-align: center;
+}
+
+input[type="submit"],
+button,
+.btn {
+  @apply bg-blue-500 text-white text-lg px-4 py-3 
+  font-semibold rounded-sm inline-block my-2 cursor-pointer shadow-md;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+  @apply bg-blue-800;
+}
+
+p.notice {
+  @apply bg-green-200 text-sm text-green-500 p-2 text-center;
+}
+p.alert {
+  @apply bg-red-200 text-sm text-red-500 p-2 text-center;
+}
+
+nav {
+  @apply bg-blue-500 p-3 flex justify-between;
+}
+
+nav a {
+  @apply text-white;
+}
+
+nav h1 {
+  @apply font-bold text-white inline;
+}
+
+.menu {
+  @apply flex gap-4;
+}
+
+table {
+  @apply table-auto w-full;
+}
+
+tr {
+  @apply bg-blue-500 text-center;
+}
+
+th {
+  @apply w-1/6 text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-transparent;
+}
+
+td {
+  @apply text-center font-medium 
+  py-3
+  px-2
+  bg-white
+  border-b;
+}
+
+.portfolio {
+  @apply max-w-full overflow-x-auto mt-2 shadow-md;
+}
+
+.shares {
+  @apply bg-gray-100 p-3 mt-2;
+}
+
+.shares .btn-buy,
+.shares .btn-sell {
+  @apply py-3;
+}
+
+.btn-buy,
+input.btn-buy {
+  @apply px-2 py-1 text-green-500 bg-green-100 rounded;
+}
+
+.btn-buy:hover,
+input.btn-buy:hover {
+  @apply bg-green-800 text-white;
+}
+
+.btn-sell,
+input.btn-sell {
+  @apply px-2 py-1 text-red-500 bg-red-100 rounded;
+}
+
+.btn-sell:hover,
+input.btn-sell:hover {
+  @apply text-white bg-red-800;
+}

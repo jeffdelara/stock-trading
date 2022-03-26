@@ -10,6 +10,11 @@ class QuotesController < ApplicationController
 
   def show 
     @quote = Stock.new_lookup(params[:symbol].upcase)
+    
+    unless @quote
+      flash[:alert] = 'Stock not found.'
+      render :new 
+    end
   end 
   
   def new 

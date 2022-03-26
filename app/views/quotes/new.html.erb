@@ -1,3 +1,7 @@
-<h1>Stock Symbol</h1>
-<hr>
-<%= render 'quotes/form' %>
+<div class='container login'>
+  <h1>Quote</h1>
+  <p class='my-2 text-gray-500'>Enter the stock symbol of the stock you're interested in.</p>
+  <%= render 'quotes/form' %>
+  <hr>
+  <%= link_to 'Back to portfolio', stocks_path %>
+</div>
