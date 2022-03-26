@@ -9,6 +9,7 @@
         <th>Transaction Type</th>
         <th>Company name</th>
         <th>Shares</th>
+        <th>Type</th>
       </tr>
     </thead>
 
@@ -16,8 +17,9 @@
       <% @transactions.each do |transaction| %>
         <tr>
           <td><%= 'Transaction Type' %></td>
-          <td><%= @transactions.company_name %></td>
-          <td><%= @transactions.shares %></td>
+          <td><%= transaction.company_name %></td>
+          <td><%= transaction.shares %></td>
+          <td><%= transaction.transaction_type.name %></td>
         </tr>
       <% end %>
     </tbody>
