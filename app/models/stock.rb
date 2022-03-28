@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
 
   belongs_to :user
+  attr_accessor :transact_shares
 
 
   # Validations

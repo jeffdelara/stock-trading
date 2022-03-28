@@ -8,5 +8,5 @@ class ApplicationController < ActionController::Base
     return admin_path if current_user.admin?
     return portfolio_path if current_user.trader?
   end
-  
+
 end

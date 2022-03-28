@@ -26,4 +26,39 @@ class User < ApplicationRecord
   def trader? 
     self.role == 'trader'
   end
+
+  def buy_stock symbol, shares
+    stock = self.stocks.build :symbol => symbol, :shares => shares
+    stock_portfolio = self.stocks.find_by_symbol symbol.upcase
+
+    if stock_portfolio 
+      stock_portfolio.update(
+        :shares => stock_portfolio.shares + shares
+      )
+      
+      stock_portfolio.transact_shares = shares 
+      return stock_portfolio
+    else 
+      stock.transact_shares = shares
+      stock.save
+    end
+    return stock
+  end
+
+  def sell_stock symbol, shares 
+    stock = self.stocks.find_by_symbol symbol
+    sold_shares = shares
+
+    if sold_shares > stock.shares 
+      flash[:alert] = 
+        "You only have #{stock.shares} of #{stock.company_name} to sell."
+      return nil
+    else
+      stock.update :shares => (stock.shares - sold_shares)
+      stock.transact_shares = sold_shares
+      return stock 
+    end
+  end
+
+
 end 

@@ -6,9 +6,11 @@
   <table>
     <thead>
       <tr>
-        <th>Transaction Type</th>
+        <th>Date</th>
         <th>Company name</th>
         <th>Shares</th>
+        <th>Price</th>
+        <th>Amount</th>
         <th>Type</th>
       </tr>
     </thead>
@@ -16,10 +18,15 @@
     <tbody>
       <% @transactions.each do |transaction| %>
         <tr>
-          <td><%= 'Transaction Type' %></td>
+          <td class='text-gray-500 text-sm'><%= transaction.created_at.strftime('%b %d, %Y %I:%M %P') %></td>
           <td><%= transaction.company_name %></td>
           <td><%= transaction.shares %></td>
-          <td><%= transaction.transaction_type.name %></td>
+          <td><%= format_number transaction.price %></td>
+          <td><%= format_number transaction.value %></td>
+          <% transaction_name = transaction.transaction_type.name %>
+          <td class='<%= transaction_name %>'>
+            <%= transaction_name %>
+          </td>
         </tr>
       <% end %>
     </tbody>
