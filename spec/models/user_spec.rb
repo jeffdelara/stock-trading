@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     it 'is not valid without username' do
       user = described_class.new
       user.email = nil
-    expect(user).not_to be_valid
+      expect(user).not_to be_valid
     end
   end
 
@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     it "has many transactions" do
       should respond_to(:transactions)
     end
+  end
 
   context 'User management' do 
     it 'can create a user' do 
