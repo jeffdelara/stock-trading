@@ -24,11 +24,9 @@ class StocksController < ApplicationController
   # POST /stocks
   def create
     @stock = current_user.buy_stock(
-      stock_params[:symbol], 
+      stock_params, 
       stock_params[:shares].to_f
     )
-
-    p @stock
     
     Transaction.record @stock, 'buy'
     redirect_to stocks_path, notice: 'Buy successful.'

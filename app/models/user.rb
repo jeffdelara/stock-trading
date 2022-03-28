@@ -27,8 +27,10 @@ class User < ApplicationRecord
     self.role == 'trader'
   end
 
-  def buy_stock symbol, shares
-    stock = self.stocks.build :symbol => symbol, :shares => shares
+  def buy_stock stock_params, shares
+    symbol = stock_params[:symbol]
+    stock = self.stocks.build(stock_params)
+    stock.transact_shares = shares
     stock_portfolio = self.stocks.find_by_symbol symbol.upcase
 
     if stock_portfolio 
@@ -39,8 +41,8 @@ class User < ApplicationRecord
       stock_portfolio.transact_shares = shares 
       return stock_portfolio
     else 
-      stock.transact_shares = shares
       stock.save
+      stock.transact_shares = shares
       return stock
     end
   end
