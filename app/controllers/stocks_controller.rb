@@ -5,7 +5,7 @@ class StocksController < ApplicationController
 
   # GET /stocks
   def index
-    @stocks = current_user.stocks.where.not(shares: 0)
+    @stocks = current_user.stocks.where.not(shares: 0).order(:symbol => :ASC)
   end
 
   # GET /stocks/1
@@ -23,18 +23,11 @@ class StocksController < ApplicationController
 
   # POST /stocks
   def create
-    @stock = current_user.stocks.build stock_params
-    stock_portfolio = current_user.stocks.find_by_symbol @stock.symbol 
-
-    if stock_portfolio 
-      stock_portfolio.update(
-        :shares => stock_portfolio.shares + @stock.shares
-      )
-      @stock = stock_portfolio
-    else 
-      @stock.save
-    end
-
+    @stock = current_user.buy_stock(
+      stock_params[:symbol], 
+      stock_params[:shares].to_f
+    )
+    
     Transaction.record @stock, 'buy'
     redirect_to stocks_path, notice: 'Buy successful.'
   end

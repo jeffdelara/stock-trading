@@ -9,9 +9,9 @@ class Transaction < ApplicationRecord
     Transaction.create(
       :symbol => stock.symbol, 
       :company_name => stock.company_name, 
-      :shares => stock.shares, 
+      :shares => stock.transact_shares, 
       :price => stock.cost_price, 
-      :value => (stock.cost_price * stock.shares).round(2), 
+      :value => (stock.cost_price * stock.transact_shares).round(2), 
       :transaction_type => TransactionType.find_by_name(type.downcase), 
       :user_id => stock.user_id
     )
