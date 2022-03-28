@@ -30,7 +30,7 @@
       <%= f.hidden_field :company_name, :value => @quote.company_name %>
       <%= f.hidden_field :cost_price, :value => @quote.cost_price %>
       <%= f.label :shares, 'Enter the number of shares' %><br>
-      <%= f.number_field :shares, :placeholder => 'Number of shares to buy...' %>
+      <%= f.number_field :shares, :placeholder => 'Number of shares to buy...', :required => true %>
       <%= f.submit "Buy #{@quote.company_name}", class: 'w-full btn-buy' %>
     <% end %>
   </div>
