@@ -1,37 +1,51 @@
-<h1>My Portfolio <%= link_to '+ Buy Stock', new_quote_path, class: 'btn float-right' %></h1>
+<h1>My Portfolio</h1>
+
+<%= link_to '+ Buy Stock', new_quote_path, 
+    class: 'btn float-right' if current_user.approved? %>
 
 <div class='portfolio clear-both'>
-<table>
-  <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Company name</th>
-      <th>Shares</th>
-      <th>Cost price ($)</th>
-      <th>Total</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @stocks.each do |stock| %>
-      <tr>
-        <td class='font-semibold'><%= stock.symbol %></td>
-        <td class='text-gray-500 text-left'><%= stock.company_name %></td>
-        <td><%= stock.shares %></td>
-        <td><%= format_number stock.cost_price %></td>
-        <td><%= format_number(stock.cost_price * stock.shares) %></td>
-        <td><%= link_to 'Sell', get_sellstock_path(stock.symbol), class: 'btn-sell' %></td>
-        <td><%= link_to 'Buy', quote_path(stock.symbol), class: 'btn-buy' %></td>
-      </tr>
-    <% end %>
+  <% if current_user.approved? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Company name</th>
+          <th>Shares</th>
+          <th>Cost price ($)</th>
+          <th>Total</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-    <tr>
-      <td class='font-bold'>TOTAL</td>
-      <td colspan=3></td>
-      <td class='font-bold'><%= format_number(compute_total @stocks) %></td>
-      <td colspan=2></td>
-    </tr>
-  </tbody>
-</table>
+      <tbody>
+        <% @stocks.each do |stock| %>
+          <tr>
+            <td class='font-semibold'><%= stock.symbol %></td>
+            <td class='text-gray-500 text-left'><%= stock.company_name %></td>
+            <td><%= stock.shares %></td>
+            <td><%= format_number stock.cost_price %></td>
+            <td><%= format_number(stock.cost_price * stock.shares) %></td>
+            <td><%= link_to 'Sell', get_sellstock_path(stock.symbol), class: 'btn-sell' %></td>
+            <td><%= link_to 'Buy', quote_path(stock.symbol), class: 'btn-buy' %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td class='font-bold'>TOTAL</td>
+          <td colspan=3></td>
+          <td class='font-bold'><%= format_number(compute_total @stocks) %></td>
+          <td colspan=2></td>
+        </tr>
+      </tbody>
+    </table>
+  <% else %>
+    <div class='bg-white p-6 flex justify-center'>
+      <div class='text-center'>
+        <h1>Account UNAPPROVED</h1>
+        <p class='text-gray-500'>Your account is not yet approved by the admin. <p>
+        <%= image_tag 'sorry.svg', class: 'w-60 mx-auto' %>
+      </div>
+    </div>
+  <% end %>
 </div>

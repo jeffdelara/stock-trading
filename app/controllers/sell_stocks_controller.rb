@@ -1,5 +1,7 @@
 class SellStocksController < ApplicationController
 
+  before_action :require_approved
+
   def show 
     symbol = params[:symbol].upcase
     @quote = Stock.new_lookup symbol 
@@ -24,8 +26,21 @@ class SellStocksController < ApplicationController
       
   end
 
+
+
   private
+  
   def stock_params
     params.require(:stock).permit(:symbol, :company_name, :shares, :cost_price, :user_id)
   end
+
+  def require_approved
+    return if current_user.admin? 
+
+    unless current_user.approved?
+      flash[:alert] = 'You are not yet approved by the admin.'
+      redirect_to stocks_path
+    end
+  end
+
 end
