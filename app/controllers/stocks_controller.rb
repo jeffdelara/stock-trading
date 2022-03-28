@@ -27,6 +27,8 @@ class StocksController < ApplicationController
       stock_params[:symbol], 
       stock_params[:shares].to_f
     )
+
+    p @stock
     
     Transaction.record @stock, 'buy'
     redirect_to stocks_path, notice: 'Buy successful.'

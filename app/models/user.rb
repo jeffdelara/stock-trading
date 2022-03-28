@@ -41,8 +41,8 @@ class User < ApplicationRecord
     else 
       stock.transact_shares = shares
       stock.save
+      return stock
     end
-    return stock
   end
 
   def sell_stock symbol, shares 
